@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Michael Jhonathan</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Trazendo as fontes do Google (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 
+      === 0. BARRA DE NAVEGAÇÃO FIXA ===
+      Pra ficar fácil ir pra qualquer lugar da página.
+    -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">MJ.</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 
+      === 1. SESSÃO HERO (A PRIMEIRA IMPRESSÃO) === 
+      Aqui é onde o usuário cai assim que entra. Tem que ser impactante!
+    -->
+    <section class="hero-section" id="home">
+        <div class="container wide-container">
+            <div class="hero-grid">
+
+                <!-- Lado Esquerdo: Textos e Informações -->
+                <div class="hero-info">
+                    <!-- Nome Principal -->
+                    <h1 class="hero-name">Michael Jhonathan</h1>
+
+                    <!-- Idade com destaque sutil -->
+                    <p class="hero-age"
+                        style="color: var(--accent); font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">23 anos
+                    </p>
+
+                    <!-- 
+                       guardo os textos que alternal entre si
+                    -->
+                    <div class="hero-roles-container">
+                        <div class="animated-text-track">
+                            <span class="role"> Aspirante a Dev Full Stack</span>
+                            <span class="role">Designer UI/UX</span>
+                        </div>
+                    </div>
+
+                    <!-- Ícones das redes sociais -->
+                    <div class="social-links" style="margin-top: 2rem;">
+                        <a href="#" aria-label="Github"><img src="assets/github.svg" alt="Github"></a>
+                        <a href="#" aria-label="LinkedIn"><img src="assets/linkedin.svg" alt="LinkedIn"></a>
+                        <a href="#" aria-label="Email"><img src="assets/mail.svg" alt="Email"></a>
+                    </div>
+                </div>
+
+                <!-- 
+                   Lado Direito: A Foto 
+                   Coloquei dentro de um container pra poder fazer uns efeitos legais de borda
+                -->
+                <div class="hero-visual">
+                    <div class="profile-container">
+                        <div class="profile-image-wrapper">
+                            <img src="assets/perfil.jpeg" alt="Michael Jhonathan" class="profile-img">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      === 2. SESSÃO SOBRE ===
+      Aqui conto um pouco dos meus pilares (Clean Code, Design, etc).
+    -->
+    <section class="about-section" id="about">
+        <div class="container mb-large">
+            <div class="section-header">
+                <span class="section-tag">SOBRE</span>
+                <h2 class="section-title">Criando o futuro digital</h2>
+                <p class="section-desc">Apaixonado por tecnologia e design, focado em criar produtos digitais que fazem
+                    a diferença e impulsionam resultados reais.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Card 1: Clean Code -->
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <img src="assets/code.svg" alt="Code">
+                    </div>
+                    <h3>Clean Code</h3>
+                    <p>Código limpo, escalável e seguindo as melhores práticas da indústria.</p>
+                </div>
+                <!-- Card 2: Design -->
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <img src="assets/palette.svg" alt="Design">
+                    </div>
+                    <h3>UX/UI Design</h3>
+                    <p>Interfaces intuitivas com atenção aos mínimos detalhes visuais.</p>
+                </div>
+                <!-- Card 3: Performance -->
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <img src="assets/zap.svg" alt="Performance">
+                    </div>
+                    <h3>Performance</h3>
+                    <p>Aplicações otimizadas para velocidade e eficiência máximas.</p>
+                </div>
+                <!-- Card 4: Inovação -->
+                <div class="feature-card">
+                    <div class="feature-icon-box">
+                        <img src="assets/rocket.svg" alt="Innovation">
+                    </div>
+                    <h3>Inovação</h3>
+                    <p>Sempre explorando as tecnologias mais recentes do mercado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      === 3. SESSÃO PROJETOS (O CARROSSEL 3D) ===
+      Aqui é onde a mágica acontece. A estrutura do carrossel.
+    -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">PORTFÓLIO</span>
+                <h2 class="section-title">Projetos selecionados</h2>
+                <p class="section-desc">Uma seleção dos meus trabalhos mais recentes. Navegue para explorar.</p>
+            </div>
+
+            <div class="carousel-wrapper">
+                <!-- Botões de Navegação (Setinhas) -->
+                <button id="prev-btn" class="nav-btn prev">
+                    <img src="assets/chevron-left.svg" alt="Previous">
+                </button>
+                <button id="next-btn" class="nav-btn next">
+                    <img src="assets/chevron-right.svg" alt="Next">
+                </button>
+
+                <!-- Cena 3D -->
+                <div class="scene">
+                    <div class="carousel" id="carousel">
+
+                        <!-- 
+                           ESTRUTURA DA CARTA (Card):
+                           Cada carta tem um 'inner' que gira, e dentro tem 'front' (frente) e 'back' (verso).
+                        -->
+
+                        <!-- Projeto 1 -->
+                        <div class="card">
+                            <div class="card-inner">
+                                <!-- Frente: Imagem e Título -->
+                                <div class="card-face card-front">
+                                    <img src="assets/project1.jpg" alt="Task Manager" class="card-bg">
+                                    <div class="card-overlay">
+                                        <h3>Projeto 1</h3>
+                                        <p class="click-info">Clique no card para mais informações</p>
+                                    </div>
+                                </div>
+                                <!-- Verso: Detalhes e Tecnologias -->
+                                <div class="card-face card-back">
+                                    <div class="back-content">
+                                        <h3>Projeto 2</h3>
+                                        <p>coisas do projeto 1</p>
+                                        <div class="tech-tags">
+                                            <span>React</span><span>Node.js</span><span>MongoDB</span>
+                                        </div>
+                                        <a href="#" class="project-btn">Ver Projeto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 2 -->
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-face card-front">
+                                    <img src="assets/project2.jpg" alt="E-Commerce" class="card-bg">
+                                    <div class="card-overlay">
+                                        <h3>projeto 2</h3>
+                                        <p class="click-info">Clique no card para mais informações</p>
+                                    </div>
+                                </div>
+                                <div class="card-face card-back">
+                                    <div class="back-content">
+                                        <h3>projeto 2</h3>
+                                        <p>coisas do projeto 2</p>
+                                        <div class="tech-tags">
+                                            <span>Next.js</span><span>Stripe</span><span>PostgreSQL</span>
+                                        </div>
+                                        <a href="#" class="project-btn">Ver Projeto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 3 -->
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-face card-front">
+                                    <img src="assets/project3.jpg" alt="AI Chat" class="card-bg">
+                                    <div class="card-overlay">
+                                        <h3>projeto 3</h3>
+                                        <p class="click-info">Clique no card para mais informações</p>
+                                    </div>
+                                </div>
+                                <div class="card-face card-back">
+                                    <div class="back-content">
+                                        <h3>projeto 3</h3>
+                                        <p>coisas do projeto 3</p>
+                                        <div class="tech-tags">
+                                            <span>Python</span><span>OpenAI</span><span>React</span>
+                                        </div>
+                                        <a href="#" class="project-btn">Ver Projeto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 4 -->
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-face card-front">
+                                    <img src="assets/project4.jpg" alt="SaaS Dashboard" class="card-bg">
+                                    <div class="card-overlay">
+                                        <h3>projeto 4</h3>
+                                        <p class="click-info">Clique no card para mais informações</p>
+                                    </div>
+                                </div>
+                                <div class="card-face card-back">
+                                    <div class="back-content">
+                                        <h3>projeto 4</h3>
+                                        <p>coisas do projeto 4</p>
+                                        <div class="tech-tags">
+                                            <span>Vue.js</span><span>Firebase</span><span>D3.js</span>
+                                        </div>
+                                        <a href="#" class="project-btn">Ver Projeto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projeto 5 -->
+                        <div class="card">
+                            <div class="card-inner">
+                                <div class="card-face card-front">
+                                    <img src="assets/project5.jpg" alt="Fitness App" class="card-bg">
+                                    <div class="card-overlay">
+                                        <h3>projeto 5</h3>
+                                        <p class="click-info">Clique no card para mais informações</p>
+                                    </div>
+                                </div>
+                                <div class="card-face card-back">
+                                    <div class="back-content">
+                                        <h3>projeto 5</h3>
+                                        <p>coisas do projeto 5</p>
+                                        <div class="tech-tags">
+                                            <span>React Native</span><span>Expo</span><span>Redux</span>
+                                        </div>
+                                        <a href="#" class="project-btn">Ver Projeto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      === 4. SESSÃO SKILLS ===
+      Lista de tecnologias que eu domino, organizadas em grupos.
+    -->
+    <section class="skills-section" id="skills">
+        <div class="container mb-large">
+            <div class="section-header">
+                <span class="section-tag">EXPERTISE</span>
+                <h2 class="section-title">Tech Stack & Skills</h2>
+                <p class="section-desc">Tecnologias e ferramentas que domino para criar soluções digitais de ponta.</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Grupo Frontend -->
+                <div class="skill-group">
+                    <div class="skill-header">Frontend</div>
+                    <div class="skill-list">
+                        <span class="skill-pill">Flutter</span>
+                        <span class="skill-pill">HTML5</span>
+                        <span class="skill-pill">CSS3</span>
+                    </div>
+                </div>
+                <!-- Grupo Backend -->
+                <div class="skill-group">
+                    <div class="skill-header">Backend</div>
+                    <div class="skill-list">
+                        <span class="skill-pill">Firebase</span>
+                    </div>
+                </div>
+                <!-- Ferramentas -->
+                <div class="skill-group">
+                    <div class="skill-header">Ferramentas</div>
+                    <div class="skill-list">
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">VS Code</span>
+                        <span class="skill-pill">Android Studio</span>
+                    </div>
+                </div>
+                <!-- Soft Skills -->
+                <div class="skill-group">
+                    <div class="skill-header">Soft Skills</div>
+                    <div class="skill-list">
+                        <span class="skill-pill">Liderança</span>
+                        <span class="skill-pill">Comunicação</span>
+                        <span class="skill-pill">Criatividade</span>
+                        <span class="skill-pill">Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      === 5. SESSÃO CONTATO ===
+      Formulário e cards de contato.
+    -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">CONTATO</span>
+                <h2 class="section-title">Vamos trabalhar juntos</h2>
+                <p class="section-desc">Tem um projeto em mente? Entre em contato e vamos transformar sua visão em
+                    realidade digital.</p>
+            </div>
+
+            <!-- Cards de Contato -->
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="icon-circle"><img src="assets/mail.svg" alt="Email"></div>
+                    <h4>Email</h4>
+                    <p>contato@example.com</p>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-circle"><img src="assets/phone.svg" alt="Phone"></div>
+                    <h4>Telefone</h4>
+                    <p>+55 (11) 99999-9999</p>
+                </div>
+                <div class="contact-card">
+                    <div class="icon-circle"><img src="assets/map-pin.svg" alt="Location"></div>
+                    <h4>Localização</h4>
+                    <p>São Paulo, Brasil</p>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <div class="form-container">
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="seu@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" rows="4" placeholder="Conte-me sobre seu projeto..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span>Enviar mensagem</span>
+                        <img src="assets/send.svg" alt="Send">
+                    </button>
+                    <!-- Área da mensagem de sucesso (escondida por padrão) -->
+                    <div id="form-success" class="hidden" style="margin-top: 1rem; color: #4ade80;">Mensagem enviada com
+                        sucesso!</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 Noah Schicksal. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Importando o script JS lá no finalzinho pro site carregar mais rápido -->
+    <script src="script.js"></script>
+</body>
+
+</html>
