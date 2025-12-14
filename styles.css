@@ -1,0 +1,881 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* Rolagem suave ao clicar nos links */
+}
+
+/*  paleta de cores  */
+:root {
+    --bg-dark: #050505;
+    /* Fundo bem escurão */
+    --bg-surface: #0a0a0f;
+    /*  mais claro pra separar seções */
+    --bg-card: #121216;
+    /* Cor das cartas e boxes */
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent: #6366f1;
+    /* Aquele roxo bonitão */
+    --accent-glow: rgba(99, 102, 241, 0.4);
+    /* Brilho do roxo */
+    --gradient-main: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --border-light: rgba(255, 255, 255, 0.08);
+    /* Bordinha bem safada */
+    --font-main: 'Inter', sans-serif;
+
+    --container-max: 1400px;
+    --spacing-section: 8rem;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* não aparece barra lateral se algo vazar */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* === BARRA DE NAVEGAÇÃO FIXA === ----------------------------------------------------------------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(5, 5, 5, 0.8);
+    /* Fundo semi-transparente */
+    backdrop-filter: blur(10px);
+    /* O famoso efeito de vidro */
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-light);
+    padding: 1rem 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    transition: .3s;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Classes Utilitárias -----------------------------------------------------------------------------------------*/
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.wide-container {
+    max-width: 1600px;
+    /* container mais laro pro Hero */
+}
+
+.mb-large {
+    margin-bottom: 4rem;
+}
+
+/* Cabeçalhos das Seções -----------------------------------------------------------------------------------------*/
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-tag {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: radial-gradient(circle at center, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    /*cor fica só no texto */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-desc {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/*  Botões-----------------------------------------------------------------------------------------------*/
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--gradient-main);
+    color: white;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    /* Sobem ao passar o mouse */
+    box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: white;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/*  1. HERO SECTION (Perfil)  */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 6rem 0;
+    /* Um gradiente sutil no fundo pra não ficar chapado */
+    background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.hero-label {
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero-name {
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+}
+
+.text-gradient {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Animação dos Cargos (Roles) -------------------------------------------------------------------------------------- */
+.hero-roles-container {
+    height: 3rem;
+    overflow: hidden;
+    /* Esconde o que sai da caixa */
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.animated-text-track {
+    position: relative;
+}
+
+.role {
+    display: block;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-secondary);
+    height: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: roleSlide 8s infinite;
+    /* troca de texto */
+}
+
+/* define o tempo de cada texto aparecer */
+.role:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.role:nth-child(2) {
+    animation-delay: 4s;
+}
+
+@keyframes roleSlide {
+
+    0%,
+    45% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+        /* sobe e some */
+    }
+}
+
+.hero-bio {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 550px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    opacity: 0.6;
+    transition: .3s;
+}
+
+.social-links a:hover img {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* visual do Hero (Foto) */
+.hero-visual {
+    position: relative;
+}
+
+.profile-container {
+    position: relative;
+    width: 100%;
+    max-height: 320px;
+    max-width: 350px;
+    aspect-ratio: 4/5;
+    margin-left: auto;
+}
+
+.profile-image-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0px 40px var(--accent-glow);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(10%);
+    transition: .5s;
+}
+
+.profile-container:hover .profile-img {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+
+
+/*  2. SOBRE --------------------------------------------------------------------------------------------------------------- */
+.about-section {
+    padding: var(--spacing-section) 0;
+    background: var(--bg-surface);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    transition: .3s;
+}
+
+.feature-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.feature-icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.feature-icon-box img {
+    width: 28px;
+    height: 28px;
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* === 3. CARROSSEL 3D === */
+.projects-section {
+    padding: var(--spacing-section) 0;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    /* Fundo escuro pra destacar o 3D */
+}
+
+.carousel-wrapper {
+    position: relative;
+    height: 600px;
+    /* Altura reduzida (era 800px) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+    /* Perspectiva ajustada */
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    position: relative;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    /* é feita direto nas cartas pelo JS */
+}
+
+/* Botões do carrossel ----------------------------------------------------------------------------------------------------------- */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 200;
+    transition: .3s;
+    backdrop-filter: blur(5px);
+}
+
+.nav-btn:hover {
+    background: white;
+    border-color: white;
+}
+
+.nav-btn:hover img {
+    filter: invert(0);
+}
+
+.nav-btn img {
+    width: 28px;
+    filter: invert(1);
+    transition: .3s;
+}
+
+.prev {
+    left: 4rem;
+}
+
+.next {
+    right: 4rem;
+}
+
+/* carrta em si */
+.card {
+    position: absolute;
+    width: 340px;
+    /* Reduzi de 480px */
+    height: 480px;
+    /* Reduzi de 620px */
+    left: -170px;
+    /* Metade da largura */
+    top: -240px;
+    /* Metade da altura */
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: transform 0.7s ease-out, opacity 0.7s ease-out;
+    /* Movimento suave controlado pelo JS */
+}
+
+/* 
+   Sombra especial para a carta do centro.
+   jsadiciona a classe .is-center automaticamente.
+*/
+.card.is-center .card-inner {
+    box-shadow: 0 0 80px rgba(99, 102, 241, 0.4);
+    /* Glow roxo intenso */
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    /* Bordinha sutil pra destacar */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+    /* Adicionei um arredondamento pra ficar mais bonito com a sombra */
+}
+
+/* Quando tem a classe .flipped, o 'recheio' da carta gira */
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* As caras da carta (Frente e Verso) */
+.card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    /* Esconde as costas quando tá virado */
+    overflow: hidden;
+    border: none;
+    background: var(--bg-card);
+    border-radius: 24px;
+    /* Acompanha o container */
+}
+
+/* FRENTE */
+.card-front {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+/* Efeito ao passar o mouse */
+.card:hover .card-bg {
+    transform: scale(1.05);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 4rem 1.5rem 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    text-align: center;
+}
+
+.card-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.click-info {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    opacity: 0.9;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* VERSO -------------------------------------------------------------------------------------------------------------------*/
+.card-back {
+    transform: rotateY(180deg);
+    /* começa virado pra trás */
+    background: var(--bg-surface);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.back-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.back-content p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.tech-tags span {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-light);
+}
+
+.project-btn {
+    padding: 0.8rem 2rem;
+    background: var(--text-primary);
+    color: black;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.project-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+
+/*  4. SKILLS  */
+.skills-section {
+    padding: var(--spacing-section) 0;
+    background: var(--bg-surface);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.skill-group {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+}
+
+.skill-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-left: 4px solid var(--accent);
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.skill-pill {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    transition: .3s;
+}
+
+.skill-pill:hover {
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+}
+
+/*  5. CONTATO  */
+.contact-section {
+    padding: var(--spacing-section) 0;
+}
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.contact-card {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid var(--border-light);
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-circle img {
+    width: 20px;
+}
+
+.contact-card h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-card p {
+    color: var(--text-secondary);
+}
+
+/* Formulário */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 3rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: .3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: .3s;
+}
+
+.submit-btn:hover {
+    background: #5558e6;
+}
+
+.submit-btn img {
+    filter: invert(1);
+    width: 18px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Rodapé */
+footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsividade (Pra Celular e Tablet) */
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 4rem;
+    }
+
+    .hero-actions,
+    .social-links {
+        justify-content: center;
+    }
+
+    .profile-container {
+        margin: 0 auto;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-name {
+        font-size: 3.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* ajustes do Carrossel no Mobile */
+    .carousel-wrapper {
+        perspective: 1000px;
+        height: 500px;
+    }
+
+    .card {
+        width: 280px;
+        height: 400px;
+        left: -140px;
+        top: -200px;
+    }
+}
