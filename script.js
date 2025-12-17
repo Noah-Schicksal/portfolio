@@ -123,7 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        
+        // --- PARTE 2: A CARTA QUE VIRA (FLIP) ---
+        // quando eu clicar em uma carata ela vira
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Se o clique foi num link ou botão dentro da carta, ela não vira de volta
+                if (e.target.closest('a') || e.target.closest('button')) return;
+
+                // só a carta que está na frente de exibição pode virar de costas
+                if (card.classList.contains('is-center')) {
+                    card.classList.toggle('flipped'); // Vira ou desvira
+                }
+            });
+        });
     }
 
     
