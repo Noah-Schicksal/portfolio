@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //formulário
-    // formulário não recarrega a página de verdade
+    //formulário não recarregar a página de verdade
     const form = document.querySelector('.contact-form');
     const successMsg = document.getElementById('form-success');
 
