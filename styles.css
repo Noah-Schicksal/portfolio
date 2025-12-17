@@ -22,11 +22,40 @@
     /* Brilho do roxo */
     --gradient-main: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     --border-light: rgba(255, 255, 255, 0.08);
-    /* bordinha bem safada */
+    /* borda */
     --font-main: 'Inter', sans-serif;
 
     --container-max: 1400px;
     --spacing-section: 8rem;
+
+    /* Raio do carrossel 3D - responsivo */
+    --carousel-radius: 550px;
+}
+
+html {
+    font-size: 16px;
+}
+
+@media (min-width: 2560px) {
+    html {
+        font-size: 20px;
+    }
+
+    :root {
+        --container-max: 80vw;
+    }
+}
+
+@media (min-width: 3840px) {
+    html {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 7680px) {
+    html {
+        font-size: 48px;
+    }
 }
 
 body {
@@ -52,7 +81,7 @@ img {
     display: block;
 }
 
-/* === BARRA DE NAVEGAÇÃO FIXA === ----------------------------------------------------------------------------------- */
+/* navbar ----------------------------------------------------------------------------------- */
 .navbar {
     position: fixed;
     top: 0;
@@ -105,7 +134,14 @@ img {
 
 .wide-container {
     max-width: 1600px;
-    /* container mais laro pro Hero */
+    width: 95%;
+    /* Garante margins nos cantos */
+}
+
+@media (min-width: 1920px) {
+    .wide-container {
+        max-width: 90vw;
+    }
 }
 
 .mb-large {
@@ -129,7 +165,8 @@ img {
 }
 
 .section-title {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 6rem);
+    /* Fluid typography */
     font-weight: 800;
     margin-bottom: 1rem;
     background: radial-gradient(circle at center, #fff 0%, #aaa 100%);
@@ -187,7 +224,6 @@ img {
     align-items: center;
     position: relative;
     padding: 6rem 0;
-    /* Um gradiente sutil no fundo pra não ficar chapado */
     background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
 }
 
@@ -206,7 +242,8 @@ img {
 }
 
 .hero-name {
-    font-size: 5.5rem;
+    font-size: clamp(3.5rem, 8vw, 10rem);
+    /* Gigante e fluido */
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 2rem;
@@ -224,7 +261,6 @@ img {
 .hero-roles-container {
     height: 3rem;
     overflow: hidden;
-    /* Esconde o que sai da caixa */
     margin-bottom: 2rem;
     position: relative;
 }
@@ -292,8 +328,8 @@ img {
 }
 
 .social-links a img {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
     filter: invert(1);
     opacity: 0.6;
     transition: .3s;
@@ -312,8 +348,8 @@ img {
 .profile-container {
     position: relative;
     width: 100%;
-    max-height: 320px;
-    max-width: 350px;
+    max-height: 20rem;
+    max-width: 22rem;
     aspect-ratio: 4/5;
     margin-left: auto;
 }
@@ -368,8 +404,8 @@ img {
 }
 
 .feature-icon-box {
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     background: rgba(99, 102, 241, 0.1);
     border-radius: 12px;
     display: flex;
@@ -379,8 +415,8 @@ img {
 }
 
 .feature-icon-box img {
-    width: 28px;
-    height: 28px;
+    width: 1.75rem;
+    height: 1.75rem;
 }
 
 .feature-card h3 {
@@ -436,8 +472,8 @@ img {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -460,7 +496,7 @@ img {
 }
 
 .nav-btn img {
-    width: 28px;
+    width: 1.75rem;
     filter: invert(1);
     transition: .3s;
 }
@@ -476,13 +512,13 @@ img {
 /* carrta em si */
 .card {
     position: absolute;
-    width: 340px;
-    /* Reduzi de 480px */
-    height: 480px;
-    /* Reduzi de 620px */
-    left: -170px;
+    width: 400px;
+    /* Aumentado de 340px para aproveitar mais espaço */
+    height: 520px;
+    /* Aumentado de 480px */
+    left: -200px;
     /* Metade da largura */
-    top: -240px;
+    top: -260px;
     /* Metade da altura */
     transform-style: preserve-3d;
     cursor: pointer;
@@ -625,13 +661,32 @@ img {
     border: 1px solid var(--border-light);
 }
 
+.project-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+    /* Push to bottom if needed, though parent is center/center */
+}
+
 .project-btn {
-    padding: 0.8rem 2rem;
+    padding: 0.5rem 1rem;
     background: var(--text-primary);
     color: black;
     border-radius: 8px;
-    font-weight: 700;
+    font-weight: 600;
     transition: .3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.project-btn img {
+    height: 1.2rem;
+    width: auto;
 }
 
 .project-btn:hover {
@@ -711,8 +766,8 @@ img {
 }
 
 .icon-circle {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     background: rgba(99, 102, 241, 0.1);
     border-radius: 50%;
     margin: 0 auto 1.5rem;
@@ -722,7 +777,7 @@ img {
 }
 
 .icon-circle img {
-    width: 20px;
+    width: 1.25rem;
 }
 
 .contact-card h4 {
@@ -868,14 +923,188 @@ footer {
 
     /* ajustes do Carrossel no Mobile */
     .carousel-wrapper {
-        perspective: 1000px;
-        height: 500px;
+        perspective: 800px;
+        height: 450px;
     }
 
     .card {
-        width: 280px;
-        height: 400px;
-        left: -140px;
-        top: -200px;
+        width: 260px;
+        /* Aumentado de 240px */
+        height: 380px;
+        /* Aumentado de 360px */
+        left: -130px;
+        top: -190px;
+    }
+
+    .nav-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .prev {
+        left: 1rem;
+    }
+
+    .next {
+        right: 1rem;
+    }
+
+    :root {
+        --carousel-radius: 350px;
+    }
+}
+
+/* === SUPORTE A TELAS ULTRA-WIDE / 2K / 4K / 8K === */
+
+/* Telas 2K (2560px) */
+@media (min-width: 2560px) {
+    .carousel-wrapper {
+        height: 850px;
+        perspective: 2800px;
+    }
+
+    .card {
+        width: 500px;
+        /* Aumentado de 420px */
+        height: 650px;
+        /* Aumentado de 580px */
+        left: -250px;
+        top: -325px;
+    }
+
+    .nav-btn {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    .nav-btn img {
+        width: 2rem;
+    }
+
+    .navbar {
+        padding: 1.5rem 0;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        gap: 3rem;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+
+    .form-container {
+        max-width: 1200px;
+        padding: 4rem;
+    }
+
+    :root {
+        --carousel-radius: 750px;
+    }
+}
+
+/* Telas 4K (3840px) */
+@media (min-width: 3840px) {
+    .carousel-wrapper {
+        height: 1100px;
+        perspective: 3500px;
+    }
+
+    .card {
+        width: 650px;
+        /* Aumentado de 520px */
+        height: 850px;
+        /* Aumentado de 720px */
+        left: -325px;
+        top: -425px;
+    }
+
+    .nav-btn {
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+
+    .nav-btn img {
+        width: 2.5rem;
+    }
+
+    .navbar {
+        padding: 2rem 0;
+    }
+
+    .logo {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        gap: 4rem;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+
+    .form-container {
+        max-width: 1600px;
+        padding: 5rem;
+    }
+
+    :root {
+        --carousel-radius: 950px;
+    }
+}
+
+/* Telas Ultra-Wide / 8K (7680px) */
+@media (min-width: 7680px) {
+    .carousel-wrapper {
+        height: 1600px;
+        perspective: 5000px;
+    }
+
+    .card {
+        width: 900px;
+        /* Aumentado de 680px */
+        height: 1200px;
+        /* Aumentado de 960px */
+        left: -450px;
+        top: -600px;
+    }
+
+    .nav-btn {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .nav-btn img {
+        width: 3.5rem;
+    }
+
+    .navbar {
+        padding: 3rem 0;
+    }
+
+    .logo {
+        font-size: 3.5rem;
+    }
+
+    .nav-links {
+        gap: 6rem;
+    }
+
+    .nav-links a {
+        font-size: 1.8rem;
+    }
+
+    .form-container {
+        max-width: 2400px;
+        padding: 6rem;
+    }
+
+    :root {
+        --carousel-radius: 1300px;
     }
 }
