@@ -1,116 +1,103 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // lógica do carrosel 
+    // Pegando os elementos do carrossel
     const carouselWrapper = document.querySelector('.carousel-wrapper');
     const cards = Array.from(document.querySelectorAll('.card'));
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
 
-    // o carrosel só funiona se houver projetos adicionados 
+    // Só executa se existirem cards na página
     if (cards.length > 0) {
 
-        //quantas cartas tem e qual o espaço que cada uma vai ocupar no círculo (em graus)
+        // Configurações do carrossel 3D
         const totalCards = cards.length;
-        const angleStep = 360 / totalCards;
-        const radius = 450; // Reduzi o raio (era 650) pra ficar mais compacto
+        const angleStep = 360 / totalCards; // Quanto cada card ocupa no círculo
+        const radius = 550; // Distância dos cards do centro
 
-        let currentRotation = 0; // começo com a rotação zerada
+        let currentRotation = 0; // Controla a rotação atual do carrossel
 
-        //função principal, decide onde cada carta vai ficar
+        // Atualiza a posição de todos os cards
         function updateCarousel() {
             cards.forEach((card, index) => {
-                // descopro o ângulo dessa carta específica somando com o quanto o carrossel já girou
+                // Calcula o ângulo de cada card
                 const angle = angleStep * index + currentRotation;
-
-                // transformo esse ângulo em radianos
                 const radian = (angle * Math.PI) / 180;
 
-                //seno e cosseno pra achar a posição X (lado) e Z (profundidade)
+                // Calcula posição X (horizontal) e Z (profundidade)
                 const x = Math.sin(radian) * radius;
                 const z = Math.cos(radian) * radius;
 
-                //giro a carta ao contrário do ângulo dela (-angle)
-                // isso faz com queenquanto ela gira no carrossel, ela tente sempre "olhar" pro centro
-                // as cartas laterais ficam inclinadinhas, dando aquele efeito 3D legal
+                // Faz o card sempre "olhar" para frente
                 const rotateY = -angle;
 
-                // --- AJUSTES VISUAIS ---
-                // verifico o card está na frente ou atrás para mudar o tamanho e a transparência
-
-                //rimeiro deixo o ângulo "limpo" entre 0 e 360
+                // Ajusta o ângulo para ficar entre 0 e 360
                 let normalizedAngle = angle % 360;
                 if (normalizedAngle < 0) normalizedAngle += 360;
 
-                // calculo quão longe ela está da frente (que é o ângulo 0)
+                // Calcula distância do card até a frente
                 const distanceFromFront = Math.min(normalizedAngle, 360 - normalizedAngle);
 
-                // Se o Z for positivo, ela tá na metade da frente
+                // Verifica se o card está na frente ou atrás
                 const isFrontHemisphere = z > 0;
 
-                // Se tiver na frente, deixo grande (escala 1). Se for pra trás, diminuo pra 0.6
-                // aço uma conta pra ela diminuirsuavemente conforme se afasta
+                // Cards da frente ficam maiores, cards de trás ficam menores
                 const scale = isFrontHemisphere
                     ? 1 - (distanceFromFront / 360) * 0.4
                     : 0.6;
 
-                // mesma coisa pra opacidade: lá no fundo fica meio transparente (0.3)
+                // Cards da frente ficam opacos, cards de trás ficam transparentes
                 const opacity = isFrontHemisphere
                     ? 1 - (distanceFromFront / 360) * 0.6
                     : 0.3;
 
-                // jogo no CSS da carta de uma vez só
+                // Aplica todas as transformações no card
                 card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`;
                 card.style.opacity = opacity;
 
-                // Quem tá na frente tem que ficar por cima (Z-Index maior)
+                // Cards mais próximos ficam por cima dos outros
                 card.style.zIndex = Math.round(z);
 
-                // se a carta estiverno centro, eu deixo clicar nela
+                // Marca o card central para poder clicar nele
                 const isCenter = distanceFromFront < (angleStep / 2);
 
                 if (isCenter) {
                     card.classList.add('is-center');
-                    card.style.pointerEvents = 'auto'; // Pode clicar
+                    card.style.pointerEvents = 'auto';
                 } else {
                     card.classList.remove('is-center');
-                    // ns outras, a gente ignora o clique por enquanto
                 }
             });
         }
 
-        // chamo a função uma vez pra arrumar tudo na tela.
+        // Posiciona os cards inicialmente
         updateCarousel();
 
 
-        // --- FUNÇÃO PRA DESVIRAR TUDO ---
-        //criei essa função pra garantir que, quando o carrossel girar,
-        // qualquer carta que esteja virada (mostrando o verso) volte a ficar normal
+        // Desvira todos os cards quando o carrossel girar
         function resetAllFlips() {
             cards.forEach(card => card.classList.remove('flipped'));
         }
 
 
-        // --- BOTÕES E TECLADO ---
-        // se clicar pra esquerda ou direita, eu giro o carrossel
-        // e chamo a função que desvira as cartas
-
+        // Botão anterior (esquerda)
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
-                resetAllFlips(); // desvira qualquer card virado
+                resetAllFlips();
                 currentRotation += angleStep;
                 updateCarousel();
             });
         }
 
+        // Botão próximo (direita)
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
-                resetAllFlips(); // desvira qualquer card virado
+                resetAllFlips();
                 currentRotation -= angleStep;
                 updateCarousel();
             });
         }
 
-        // caso queira passar o carrosel com as setas do teclado
+        // Navegação com setas do teclado
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 resetAllFlips();
@@ -123,45 +110,43 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // --- PARTE 2: A CARTA QUE VIRA (FLIP) ---
-        // quando eu clicar em uma carata ela vira
+        // Clique nos cards para virar e mostrar detalhes
         cards.forEach(card => {
             card.addEventListener('click', (e) => {
-                // Se o clique foi num link ou botão dentro da carta, ela não vira de volta
+                // Não vira o card se clicar em links ou botões
                 if (e.target.closest('a') || e.target.closest('button')) return;
 
-                // só a carta que está na frente de exibição pode virar de costas
+                // Só vira o card que está no centro
                 if (card.classList.contains('is-center')) {
-                    card.classList.toggle('flipped'); // Vira ou desvira
+                    card.classList.toggle('flipped');
                 }
             });
         });
     }
 
-    //formulário
-    //formulário não recarregar a página de verdade
+    // Formulário de contato
     const form = document.querySelector('.contact-form');
     const successMsg = document.getElementById('form-success');
 
     if (form) {
         form.addEventListener('submit', (e) => {
-            e.preventDefault(); // inpede o navegador de recarregar a página
+            e.preventDefault(); // Impede recarregar a página
 
             const btn = document.querySelector('.submit-btn');
             const originalText = btn.innerHTML;
 
-            // Finjo que estou enviando o formulário
+            // Mostra estado de "enviando"
             btn.innerHTML = 'Enviando...';
             btn.style.opacity = '0.7';
 
-            // Espero 1.5 segundose digo que deu tudo certo
+            // Simula envio do formulário
             setTimeout(() => {
                 btn.innerHTML = originalText;
                 btn.style.opacity = '1';
-                successMsg.classList.remove('hidden'); // Mostra o "Sucesso!"
-                form.reset(); // limpa o formulário pra pessoa escrever de novo se quiser
+                successMsg.classList.remove('hidden');
+                form.reset();
 
-                // Depois de 5 segundos, eu escondo a mensagem de sucesso 
+                // Esconde mensagem de sucesso após 5 segundos
                 setTimeout(() => {
                     successMsg.classList.add('hidden');
                 }, 5000);
