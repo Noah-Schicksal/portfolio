@@ -22,7 +22,7 @@
     /* Brilho do roxo */
     --gradient-main: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     --border-light: rgba(255, 255, 255, 0.08);
-    /* Bordinha bem safada */
+    /* bordinha bem safada */
     --font-main: 'Inter', sans-serif;
 
     --container-max: 1400px;
