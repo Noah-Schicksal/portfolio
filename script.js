@@ -138,5 +138,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+    //formulário
+    // formulário não recarrega a página de verdade
+    const form = document.querySelector('.contact-form');
+    const successMsg = document.getElementById('form-success');
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // inpede o navegador de recarregar a página
+
+            const btn = document.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+
+            // Finjo que estou enviando o formulário
+            btn.innerHTML = 'Enviando...';
+            btn.style.opacity = '0.7';
+
+            // Espero 1.5 segundose digo que deu tudo certo
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+                successMsg.classList.remove('hidden'); // Mostra o "Sucesso!"
+                form.reset(); // limpa o formulário pra pessoa escrever de novo se quiser
+
+                // Depois de 5 segundos, eu escondo a mensagem de sucesso 
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        });
+    }
 });
